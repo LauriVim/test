@@ -5,21 +5,21 @@
 (* @SYMFILEFLAGS := '2048' *)
 FUNCTION_BLOCK FB_lights
 VAR_INPUT
-	dooropen					:BOOL; (* status from tamware controller*)
+	dooropen			:BOOL; (* status from tamware controller*)
 	selectautomode			:BOOL;	(*selection from drivers panel or operating panel*)
 	selectmanualmode		:BOOL;(*selection from drivers panel or operating panel*)
-	speedover30				:BOOL;
+	speedover30			:BOOL;
 	selectentrancelight		:BOOL;
 	selectedgelight			:BOOL;
 END_VAR
 VAR_OUTPUT
-	stairwellLightON			:BOOL;
+	stairwellLightON		:BOOL;
 	edgeLightsON			:BOOL;
-	entrancelightsON			:BOOL;
+	entrancelightsON		:BOOL;
 END_VAR
 VAR
-	automode					:BOOL;
-	manualmode				:BOOL;
+	automode			:BOOL;
+	manualmode			:BOOL;
 END_VAR
 (* @END_DECLARATION := '0' *)
 stairwellLightON 		:= FALSE;
