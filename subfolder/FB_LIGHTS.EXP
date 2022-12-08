@@ -1,0 +1,54 @@
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/4_DoorFunctions' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+FUNCTION_BLOCK FB_lights
+VAR_INPUT
+	dooropen					:BOOL; (* status from tamware controller*)
+	selectautomode			:BOOL;	(*selection from drivers panel or operating panel*)
+	selectmanualmode		:BOOL;(*selection from drivers panel or operating panel*)
+	speedover30				:BOOL;
+	selectentrancelight		:BOOL;
+	selectedgelight			:BOOL;
+END_VAR
+VAR_OUTPUT
+	stairwellLightON			:BOOL;
+	edgeLightsON			:BOOL;
+	entrancelightsON			:BOOL;
+END_VAR
+VAR
+	automode					:BOOL;
+	manualmode				:BOOL;
+END_VAR
+(* @END_DECLARATION := '0' *)
+stairwellLightON 		:= FALSE;
+edgeLightsON		:= FALSE;
+entrancelightsON		:=FALSE;
+
+IF dooropen THEN
+	stairwellLightON := TRUE;
+END_IF;
+
+IF selectautomode AND NOT selectmanualmode THEN
+	automode 			:= TRUE;
+	manualmode		:=FALSE;
+ELSE IF selectmanualmode AND NOT selectautomode THEN
+	automode			:=FALSE;
+	manualmode		:=TRUE;
+END_IF;
+
+IF automode AND dooropen THEN
+	edgeLightsON	:= TRUE;
+END_IF;
+
+IF selectentrancelight AND NOT speedover30 THEN
+	entrancelightsON	:=TRUE;
+END_IF;
+
+
+
+
+
+
+END_FUNCTION_BLOCK
