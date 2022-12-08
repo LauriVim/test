@@ -6,25 +6,25 @@
 FUNCTION_BLOCK FB_heaterControls
 VAR_INPUT
 	network_failure_on						:BOOL;
-	diesel_heater_on_req					:BOOL;
-	heating_sp								:REAL;		(*SP = setpoint in degrees*)
+	diesel_heater_on_req						:BOOL;
+	heating_sp							:REAL;		(*SP = setpoint in degrees*)
 	max_difference_req						:REAL;		(*in degrees*)
 	temperature_outside						:REAL;		(*in degrees*)
 	temperature_inside						:REAL;		(*in degrees*)
 END_VAR
 VAR_OUTPUT
-	diesel_heater_on							:BOOL;
+	diesel_heater_on						:BOOL;
 	electrical_heater_on						:BOOL;
 END_VAR
 VAR
-	difference									:REAL;
+	difference							:REAL;
 END_VAR
 (* @END_DECLARATION := '0' *)
 
 (*initialize*)
 diesel_heater_on		:= FALSE;
-electrical_heater_on := FALSE;
-difference				:= heating_sp - temperature_inside;
+electrical_heater_on 		:= FALSE;
+difference			:= heating_sp - temperature_inside;
 
 (*check if diesel heater is needed*)
 IF difference_sp_and_temp_inside	 > 0  AND max_difference_req > 0 AND NOT diesel_heater_on_req THEN
